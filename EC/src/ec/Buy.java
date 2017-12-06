@@ -45,7 +45,10 @@ public class Buy extends HttpServlet {
 				// 配送方法をDBから取得
 				ArrayList<DeliveryMethodDataBeans> dMDBList = DeliveryMethodDAO.getAllDeliveryMethodDataBeans();
 				request.setAttribute("dmdbList", dMDBList);
+
 				request.getRequestDispatcher(EcHelper.BUY_PAGE).forward(request, response);
+
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

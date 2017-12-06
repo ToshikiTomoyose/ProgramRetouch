@@ -116,9 +116,9 @@ public class ItemDAO {
 				st.setInt(1, startiItemNum);
 				st.setInt(2, pageMaxItemCount);
 			} else {
-				// 商品名検索
-				st = con.prepareStatement("SELECT * FROM m_item WHERE name = ?  ORDER BY id ASC LIMIT ?,? ");
-				st.setString(1,searchWord);
+				// 商品名検索ここもあやしい？
+				st = con.prepareStatement("SELECT * FROM m_item WHERE name LIKE ?  ORDER BY id ASC LIMIT ?,? ");
+				st.setString(1, '%' + searchWord + '%');
 				st.setInt(2, startiItemNum);
 				st.setInt(3, pageMaxItemCount);
 			}
@@ -153,13 +153,15 @@ public class ItemDAO {
 	 * @return
 	 * @throws SQLException
 	 */
+
+	//ここ？
 	public static double getItemCount(String searchWord) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
 		try {
 			con = DBManager.getConnection();
 			st = con.prepareStatement("select count(*) as cnt from m_item where name like ?");
-			st.setString(1, "%" + searchWord + "%");
+			st.setString(1, '%' + searchWord + '%');
 			ResultSet rs = st.executeQuery();
 			double coung = 0.0;
 			while (rs.next()) {

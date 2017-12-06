@@ -1,3 +1,4 @@
+<%@page import="dao.DeliveryMethodDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@	page import="beans.ItemDataBeans"%>
 <%@	page import="beans.DeliveryMethodDataBeans"%>
@@ -30,6 +31,7 @@
 							<div class="row">
 								<table class="bordered">
 									<thead>
+
 										<tr>
 											<th class="center" style="width: 20%">商品名</th>
 											<th class="center">単価</th>
@@ -44,6 +46,7 @@
 											<td class="center"><%=cartInItem.getName()%></td>
 											<td class="center"><%=cartInItem.getPrice()%>円</td>
 											<td class="center"><%=cartInItem.getPrice()%>円</td>
+
 										</tr>
 										<%
 											}
@@ -53,16 +56,18 @@
 											<td class="center"></td>
 											<td class="center">
 												<div class="input-field col s8 offset-s2 ">
+
 													<select name="delivery_method_id">
 														<%
 															for (DeliveryMethodDataBeans dmdb : dmdbList) {
 														%>
-														<option value="<%=dmdb.getId()%>"><%=dmdb.getName()%></option>
+														<option value="<%=dmdb.getId()%>"><%=dmdb.getName()%> <%=dmdb.getPrice()%>円 </option>
 														<%
 															}
 														%>
 													</select> <label>配送方法</label>
 												</div>
+
 											</td>
 										</tr>
 									</tbody>

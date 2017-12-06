@@ -11,6 +11,7 @@
 <%
 	ArrayList<ItemDataBeans> cart = (ArrayList<ItemDataBeans>) session.getAttribute("cart");
 	BuyDataBeans bdb = (BuyDataBeans) session.getAttribute("bdb");
+
 %>
 </head>
 <body>
@@ -48,6 +49,7 @@
 										}
 									%>
 									<tr>
+										<!--前ページのセッションを保持していないとnullになる？ -->
 
 										<td class="center"><%=bdb.getDeliveryMethodName()%></td>
 										<td class="center"></td>
@@ -58,6 +60,7 @@
 										<td class="center">合計</td>
 										<td class="center"><%=bdb.getTotalPrice()%>円</td>
 									</tr>
+
 								</tbody>
 							</table>
 						</div>
