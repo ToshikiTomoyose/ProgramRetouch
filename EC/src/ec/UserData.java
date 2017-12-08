@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.BuyDataBeans;
 import beans.UserDataBeans;
+import dao.BuyDAO;
 import dao.UserDAO;
 
 /**
@@ -27,16 +29,16 @@ public class UserData extends HttpServlet {
 		// セッション開始
 		HttpSession session = request.getSession();
 		try {
-			// ログイン時に取得したユーザーIDをセッションから取得
+			// ログイン時に取得したユーザーIDをセッションから取得、そのセッションはユーザーIDに基づいた履歴を表示させるときにも使う
 			int userId = (int) session.getAttribute("userId");
+
+			BuyDataBeans bdb = BuyDAO.getBuyDataBeansByBuyId(userId);
+			session.setAttribute("bdb",bdb);
 			// 更新確認画面から戻ってきた場合Sessionから取得。それ以外はuserIdでユーザーを取得
 			UserDataBeans udb = session.getAttribute("returnUDB") == null ? UserDAO.getUserDataBeansByUserId(userId) : (UserDataBeans) EcHelper.cutSessionAttribute(session, "returnUDB");
 
-
-
 			// 入力された内容に誤りがあったとき等に表示するエラーメッセージを格納する
 			String validationMessage = (String) EcHelper.cutSessionAttribute(session, "validationMessage");
-
 
 			request.setAttribute("validationMessage", validationMessage);
 			request.setAttribute("udb", udb);

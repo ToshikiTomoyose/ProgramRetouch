@@ -2,15 +2,19 @@
 <%@ page import="beans.BuyDataBeans"%>
 <%@ page import="beans.UserDataBeans"%>
 <%@ page import=" java.util.ArrayList"%>
+<%@ page import= "beans.BuyDataBeans" %>
+<%@ page import= "beans.ItemDataBeans" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ユーザー情報</title>
 <jsp:include page="/baselayout/head.html" />
+
 <%
 	String validationMessage = (String) request.getAttribute("validationMessage");
 	UserDataBeans udb = (UserDataBeans)request.getAttribute("udb");
+	BuyDataBeans bdb = (BuyDataBeans)session.getAttribute("bdb");
 %>
 </head>
 <body>
@@ -57,7 +61,7 @@
 				</div>
 			</div>
 		</div>
-		<!--  購入履歴 -->
+		<!--  購入履歴   jspに書き換えよう-->
 		<div class="row">
 			<div class="col s12">
 				<div class="card grey lighten-5">
@@ -72,20 +76,14 @@
 								</tr>
 							</thead>
 							<tbody>
-
+								<%-- for(BuyDataBeans ibdb : udb) { --%>
 								<tr>
-									<td class="center"><a href="UserBuyHistoryDetail?buy_id=1" class="btn-floating btn waves-effect waves-light "> <i class="material-icons">details</i></a></td>
-									<td class="center">1234年56月78日90時12分</td>
-									<td class="center">サンプル配送料金</td>
-									<td class="center"><123456789円円</td>
+									<td class="center"><a href="UserBuyHistoryDetail?buy_id=<%= bdb.getId() %>" class="btn-floating btn waves-effect waves-light "> <i class="material-icons">details</i></a></td>
+									<td class="center"><%= bdb.getBuyDate() %></td>
+									<td class="center"><%= bdb.getDeliveryMethodName() %></td>
+									<td class="center"><%= bdb.getTotalPrice() %></td>
 								</tr>
-								<tr>
-									<td class="center"><a href="UserBuyHistoryDetail?buy_id=2" class="btn-floating btn waves-effect waves-light "> <i class="material-icons">details</i></a></td>
-									<td class="center">1234年56月78日90時12分</td>
-									<td class="center">サンプル配送料金</td>
-									<td class="center"><123456789円円</td>
-								</tr>
-
+								<%-- } --%>
 							</tbody>
 						</table>
 					</div>

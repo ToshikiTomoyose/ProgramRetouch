@@ -1,4 +1,16 @@
 <%@	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="beans.BuyDataBeans"%>
+<%@ page import="beans.UserDataBeans"%>
+<%@ page import=" java.util.ArrayList"%>
+<%@ page import= "beans.BuyDataBeans" %>
+<%@ page import= "beans.ItemDataBeans" %>
+
+<%
+	String validationMessage = (String) request.getAttribute("validationMessage");
+	UserDataBeans udb = (UserDataBeans)request.getAttribute("udb");
+	BuyDataBeans bdb = (BuyDataBeans)session.getAttribute("bdb");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +41,9 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td class="center">1234年56月78日90時12分</td>
-									<td class="center">サンプル</td>
-									<td class="center">123456789円</td>
+									<td class="center"><%= bdb.getBuyDate() %></td>
+									<td class="center"><%= bdb.getDeliveryMethodName() %></td>
+									<td class="center"><%= bdb.getTotalPrice() %></td>
 								</tr>
 							</tbody>
 						</table>
