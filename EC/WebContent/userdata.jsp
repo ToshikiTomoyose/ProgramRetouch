@@ -4,6 +4,8 @@
 <%@ page import=" java.util.ArrayList"%>
 <%@ page import= "beans.BuyDataBeans" %>
 <%@ page import= "beans.ItemDataBeans" %>
+<%@ page import=" java.util.List"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +16,10 @@
 <%
 	String validationMessage = (String) request.getAttribute("validationMessage");
 	UserDataBeans udb = (UserDataBeans)request.getAttribute("udb");
-	BuyDataBeans bdb = (BuyDataBeans)session.getAttribute("bdb");
+	List<BuyDataBeans> bdblist = (List<BuyDataBeans>)session.getAttribute("bdblist");
+
 %>
+
 </head>
 <body>
 	<jsp:include page="/baselayout/header.jsp" />
@@ -76,14 +80,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<%-- for(BuyDataBeans ibdb : udb) { --%>
+								<% for(BuyDataBeans ibdb : bdblist) { %>
 								<tr>
-									<td class="center"><a href="UserBuyHistoryDetail?buy_id=<%= bdb.getId() %>" class="btn-floating btn waves-effect waves-light "> <i class="material-icons">details</i></a></td>
-									<td class="center"><%= bdb.getBuyDate() %></td>
-									<td class="center"><%= bdb.getDeliveryMethodName() %></td>
-									<td class="center"><%= bdb.getTotalPrice() %></td>
+									<td class="center"><a href="UserBuyHistoryDetail?buy_id=<%= ibdb.getId() %>" class="btn-floating btn waves-effect waves-light "> <i class="material-icons">details</i></a></td>
+									<td class="center"><%= ibdb.getBuyDate() %></td>
+									<td class="center"><%= ibdb.getDeliveryMethodName() %></td>
+									<td class="center"><%= ibdb.getTotalPrice() %></td>
 								</tr>
-								<%-- } --%>
+
+									<% } %>
+
+
 							</tbody>
 						</table>
 					</div>

@@ -1,3 +1,4 @@
+<%@page import="ec.Item"%>
 <%@	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="beans.BuyDataBeans"%>
 <%@ page import="beans.UserDataBeans"%>
@@ -9,6 +10,7 @@
 	String validationMessage = (String) request.getAttribute("validationMessage");
 	UserDataBeans udb = (UserDataBeans)request.getAttribute("udb");
 	BuyDataBeans bdb = (BuyDataBeans)session.getAttribute("bdb");
+	ArrayList<ItemDataBeans>  bddb = (ArrayList<ItemDataBeans>)session.getAttribute("bddb");
 %>
 
 <!DOCTYPE html>
@@ -41,9 +43,9 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td class="center"><%= bdb.getBuyDate() %></td>
-									<td class="center"><%= bdb.getDeliveryMethodName() %></td>
-									<td class="center"><%= bdb.getTotalPrice() %></td>
+									<td class="center"><%=bdb.getBuyDate() %></td>
+									<td class="center"><%=bdb.getDeliveryMethodName() %></td>
+									<td class="center"><%=bdb.getTotalPrice() %></td>
 								</tr>
 							</tbody>
 						</table>
@@ -64,21 +66,14 @@
 								</tr>
 							</thead>
 							<tbody>
+								<% for(ItemDataBeans idb : bddb) {%>
 								<tr>
-									<td class="center">サンプル商品名1</td>
-									<td class="center">111111111円</td>
-								</tr>
+									<td class="center"><%= idb.getName() %></td>
+									<td class="center"><%= idb.getPrice() %></td>
+								<% } %>
 								<tr>
-									<td class="center">サンプル商品名2</td>
-									<td class="center">222222222円</td>
-								</tr>
-								<tr>
-									<td class="center">サンプル商品名3</td>
-									<td class="center">333333333円</td>
-								</tr>
-								<tr>
-									<td class="center">サンプル</td>
-									<td class="center">123456789円</td>
+								<td class="center"><%= bdb.getDeliveryMethodName() %></td>
+								<td class="center"><%= bdb.getDeliveryMethodPrice() %></td>
 								</tr>
 							</tbody>
 						</table>
