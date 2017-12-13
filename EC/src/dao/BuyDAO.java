@@ -120,9 +120,9 @@ public class BuyDAO {
 
 			st = con.prepareStatement(
 					"SELECT * FROM t_buy"
-							+ " JOIN m_delivery_method"
-							+ " ON t_buy.delivery_method_id = m_delivery_method.id"
-							+ " WHERE t_buy.user_id = ?");
+							+ " JOIN m_delivery_method"			//JOINコマンドでt_buyとm_delivery_methodも検索の対象に
+							+ " ON t_buy.delivery_method_id = m_delivery_method.id" //t_buyテーブルのdelivery_method_idとm_delivery_method.idが等しいか
+							+ " WHERE t_buy.user_id = ?");				//t_buyのuser_id　= ?にして　？に引数のUserIdで検索
 			st.setInt(1, UserId);
 
 			ResultSet rs = st.executeQuery();
