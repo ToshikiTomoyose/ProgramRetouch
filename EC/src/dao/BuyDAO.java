@@ -103,6 +103,14 @@ public class BuyDAO {
 	}
 
 
+	/**
+	 * ユーザIDによる購入情報検索
+	 * @param UserId
+	 * @return BuyDataBeans
+	 * 				購入情報のデータを持つJavaBeansのリスト
+	 * @throws SQLException
+	 * 				呼び出し元にスローさせるため
+	 */
 	public static List<BuyDataBeans> getBuyDataBeansByBuyUserId(int UserId) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;

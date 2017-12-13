@@ -17,7 +17,6 @@
 	String validationMessage = (String) request.getAttribute("validationMessage");
 	UserDataBeans udb = (UserDataBeans)request.getAttribute("udb");
 	List<BuyDataBeans> bdblist = (List<BuyDataBeans>)session.getAttribute("bdblist");
-
 %>
 
 </head>
@@ -37,7 +36,7 @@
 							<%
 								if (validationMessage != null) {
 							%>
-							<p class="red-text center-align"><%=validationMessage%></p>
+								<p class="red-text center-align"><%=validationMessage%></p>
 							<%
 								}
 							%>
@@ -88,7 +87,7 @@
 									<td class="center"><%= ibdb.getTotalPrice() %></td>
 								</tr>
 
-									<% } %>
+								<% } %>
 
 
 							</tbody>
