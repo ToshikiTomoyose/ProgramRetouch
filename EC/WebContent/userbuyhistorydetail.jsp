@@ -9,8 +9,8 @@
 <%
 	String validationMessage = (String) request.getAttribute("validationMessage");
 	UserDataBeans udb = (UserDataBeans)request.getAttribute("udb");
-	BuyDataBeans bdb = (BuyDataBeans)session.getAttribute("bdb");
-	ArrayList<ItemDataBeans>  bddb = (ArrayList<ItemDataBeans>)session.getAttribute("bddb");
+	BuyDataBeans bdb = (BuyDataBeans)session.getAttribute("bdb");  //bdbで購入日・配送方法・購入金額を表示させる
+	ArrayList<ItemDataBeans>  bddb = (ArrayList<ItemDataBeans>)session.getAttribute("bddb"); //購入したデータを呼び出す
 %>
 
 <!DOCTYPE html>
